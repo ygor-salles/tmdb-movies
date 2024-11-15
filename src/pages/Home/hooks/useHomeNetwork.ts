@@ -1,40 +1,47 @@
-import { useCallback, useEffect, useState } from "react";
-import { Movie, MovieResponse } from "../../../models/movie-model";
+import { useEffect, useState } from "react";
 import { API_GET_MOVIES } from "../../../constants";
-import useFilterParams from "../../../hooks/useFilterParams";
-import { MovieFilterModel } from "../../../models/movie-filter-model";
+import { Movie, MovieResponse } from "../../../models/movie-model";
+import { useSearchParams } from "react-router-dom";
+import { API_FILTER_MOVIES } from "../../../constants/apiFilterMovies";
 
 export function useHomeNetwork() {
   const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState<Movie[]>([]);
+  const [searchParams, setSearchParams] = useSearchParams();
 
-  const { changeFilter } = useFilterParams<MovieFilterModel>({
-    filters: { nameMovie: "" },
-  });
+  const handleSearch = (value: string | undefined) => {
+    if (value) {
+      setSearchParams({ title: value });
+      return;
+    }
+
+    searchParams.delete("title");
+    setSearchParams(searchParams);
+  };
 
   useEffect(() => {
+    const title = searchParams.get("title");
+
     const fetchData = async () => {
       setIsLoading(true);
 
       try {
-        const response = await fetch(
-          `${API_GET_MOVIES}&sort_by=release_date.desc&page=1`
-        );
+        const url = title
+          ? `${API_FILTER_MOVIES}&query=${title}&page=1`
+          : `${API_GET_MOVIES}&sort_by=release_date.desc&page=1`;
+
+        const response = await fetch(url);
         const { results }: MovieResponse = await response.json();
         setData(results);
       } catch (error) {
-        console.error(error);
+        alert(`Error - ${error}`);
       } finally {
         setIsLoading(false);
       }
     };
 
     fetchData();
-  }, []);
+  }, [searchParams]);
 
-  const handleSearch = useCallback((value: string) => {
-    console.log(value);
-  }, []);
-
-  return { data, isLoading, handleSearch };
+  return { data, isLoading, title: searchParams.get("title"), handleSearch };
 }

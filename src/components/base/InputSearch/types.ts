@@ -1,3 +1,4 @@
 export interface IInputSearchProps {
-  onSearch: (value: string) => void;
+  onSearch: (value: string | undefined) => void;
+  defaultValue: string | null;
 }
