@@ -4,7 +4,7 @@ import { IBaseLayoutProps } from "./types";
 export function BaseLayout({ children }: Readonly<IBaseLayoutProps>) {
   return (
     <div className="h-screen flex flex-col overflow-x-hidden">
-      <header className="flex justify-between items-center  bg-blue-950 p-4">
+      <header className="flex justify-between items-center  bg-zinc-900 p-4">
         <img src={IMAGES.logoTmdb} alt="logo" className="w-24 h-12" />
         <span className="text-white">Titulo</span>
       </header>

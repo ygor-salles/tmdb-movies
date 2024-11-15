@@ -8,6 +8,8 @@ export const MovieCard = ({
   releaseDate,
   isAdult,
 }: IMovieCardProps) => {
+  const colorText = isAdult ? "text-red-500" : "text-green-500";
+
   return (
     <div className="w-80 rounded-lg overflow-hidden shadow-lg bg-white dark:bg-zinc-900">
       <img
@@ -19,14 +21,12 @@ export const MovieCard = ({
         <h2 className="text-2xl font-semibold text-gray-800 dark:text-white">
           {title}
         </h2>
-        <p className="text-sm text-gray-500 dark:text-gray-400">
+        <p className="text-sm  text-gray-500 dark:text-gray-400">
           Lançamento: {releaseDate}
         </p>
         <p className="text-sm font-medium text-gray-800 dark:text-white mt-2">
           Classificação:{" "}
-          <span className="text-yellow-500">
-            {isAdult ? "Adulto" : "Infantil"}
-          </span>
+          <span className={colorText}>{isAdult ? "Adulto" : "Livre"}</span>
         </p>
       </div>
     </div>

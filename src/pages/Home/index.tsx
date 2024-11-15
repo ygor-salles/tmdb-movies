@@ -1,19 +1,18 @@
 import { InputSearch, MovieCard } from "../../components/base";
 import { BaseLayout } from "../../components/layout";
 import { API_IMAGE_URL } from "../../constants/apiImageUrl";
+import { LoadingHome } from "./components/LoadingHome";
 import { useHomeNetwork } from "./hooks/useHomeNetwork";
 
 export function Home() {
   const { data, title, handleSearch, isLoading } = useHomeNetwork();
-
-  console.log(title);
 
   return (
     <BaseLayout>
       <InputSearch onSearch={handleSearch} defaultValue={title} />
 
       {isLoading ? (
-        <span>Loading...</span>
+        <LoadingHome />
       ) : (
         <div className="flex gap-4 p-4 justify-center max-w-7xl flex-wrap">
           {data.map((movie) => (
