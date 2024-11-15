@@ -1,34 +1,21 @@
 import { useEffect, useState } from "react";
-import { API_GET_MOVIES } from "../../../constants";
+import { API_GET_MOVIES, API_FILTER_MOVIES } from "../../../constants";
 import { Movie, MovieResponse } from "../../../models/movie-model";
 import { useSearchParams } from "react-router-dom";
-import { API_FILTER_MOVIES } from "../../../constants/apiFilterMovies";
+import { getSortParamsUrl } from "../../../components/base/SortByItems/utils/getSortParamsURL";
+import { sortItems } from "../constants/sortItems";
 
 export function useHomeNetwork() {
   const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState<Movie[]>([]);
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const handleSearch = (value: string | undefined) => {
-    if (value) {
-      setSearchParams({ title: value, page: "1" });
-      return;
-    }
-
-    searchParams.delete("title");
-    setSearchParams(searchParams);
-  };
-
   useEffect(() => {
     if (!searchParams.has("title")) {
-      const sortOptions = ["release_date", "popularity", "vote_average"];
+      const result = getSortParamsUrl(searchParams, sortItems);
 
-      for (const option of sortOptions) {
-        if (searchParams.has(option)) {
-          const value = searchParams.get(option) ?? "desc";
-          setSearchParams({ [option]: value, page: "1" });
-          return;
-        }
+      if (result) {
+        setSearchParams({ [result.option]: result.value, page: "1" });
       }
     }
   }, [searchParams, setSearchParams]);
@@ -40,17 +27,10 @@ export function useHomeNetwork() {
       setIsLoading(true);
 
       try {
-        let sort_by;
-        const sortOptions = ["release_date", "popularity", "vote_average"];
-
-        for (const option of sortOptions) {
-          if (searchParams.has(option)) {
-            const value = searchParams.get(option) ?? "desc";
-            sort_by = `${option}.${value}`;
-          }
-        }
-
-        sort_by = sort_by ?? "release_date.desc";
+        const result = getSortParamsUrl(searchParams, sortItems);
+        const sort_by = result
+          ? `${result.option}.${result.value}`
+          : "release_date.desc";
 
         const url = title
           ? `${API_FILTER_MOVIES}&query=${title}&page=1`
@@ -69,5 +49,5 @@ export function useHomeNetwork() {
     fetchData();
   }, [searchParams]);
 
-  return { data, isLoading, title: searchParams.get("title"), handleSearch };
+  return { data, isLoading, searchParams, setSearchParams };
 }

@@ -7,7 +7,19 @@ import { sortItems } from "./constants/sortItems";
 import { useHomeNetwork } from "./hooks/useHomeNetwork";
 
 export function Home() {
-  const { data, title, handleSearch, isLoading } = useHomeNetwork();
+  const { data, searchParams, setSearchParams, isLoading } = useHomeNetwork();
+
+  const handleSearch = (value: string | undefined) => {
+    if (value) {
+      setSearchParams({ title: value, page: "1" });
+      return;
+    }
+
+    searchParams.delete("title");
+    setSearchParams(searchParams);
+  };
+
+  const title = searchParams.get("title");
 
   return (
     <BaseLayout>
