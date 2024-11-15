@@ -10,7 +10,14 @@ export function SortByItems({ items }: Readonly<ISortByItemsProps>) {
     const result = getSortParamsUrl(searchParams, items);
 
     if (result) {
-      setSearchParams({ [key]: result.value === "asc" ? "desc" : "asc" });
+      const changed = result.value === "asc" ? "desc" : "asc";
+      const newValue =
+        result.option === key ||
+        (result.option !== key && result.value === "asc")
+          ? changed
+          : result.value;
+
+      setSearchParams({ [key]: newValue });
       return;
     }
     setSearchParams({ [key]: value });
@@ -18,13 +25,15 @@ export function SortByItems({ items }: Readonly<ISortByItemsProps>) {
 
   return (
     <div className="max-w-7xl  flex gap-4 items-center">
-      {items.map(({ label, key, value }) => {
+      {items.map(({ label, key, value, sortingType }) => {
         const valueParams = searchParams.get(key);
         const isDesc = valueParams && valueParams === "desc";
 
         return (
           <div key={label} className="flex items-center gap-2">
-            <span className="text-white">{label}</span>
+            <span className="text-white">
+              {sortingType === "date" ? label : `Top ${label}`}
+            </span>
             <button onClick={() => handleClickSort(key, value)}>
               {isDesc ? (
                 <FaArrowUp size={24} className="text-white" />
