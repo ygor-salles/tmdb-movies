@@ -8,6 +8,7 @@ export function SortByItems({ items }: Readonly<ISortByItemsProps>) {
   const handleClickSort = (key: string, value: IItemSort["value"]) => {
     const newValue: "asc" | "desc" = value && value === "asc" ? "desc" : "asc";
 
+    console.log("params", { [key]: newValue });
     setSearchParams({ [key]: newValue });
   };
 

@@ -11,7 +11,7 @@ export function useHomeNetwork() {
 
   const handleSearch = (value: string | undefined) => {
     if (value) {
-      setSearchParams({ title: value });
+      setSearchParams({ title: value, page: "1" });
       return;
     }
 
@@ -20,15 +20,41 @@ export function useHomeNetwork() {
   };
 
   useEffect(() => {
+    if (!searchParams.has("title")) {
+      const sortOptions = ["release_date", "popularity", "vote_average"];
+
+      for (const option of sortOptions) {
+        if (searchParams.has(option)) {
+          const value = searchParams.get(option) ?? "desc";
+          setSearchParams({ [option]: value, page: "1" });
+          return;
+        }
+      }
+    }
+  }, [searchParams, setSearchParams]);
+
+  useEffect(() => {
     const title = searchParams.get("title");
 
     const fetchData = async () => {
       setIsLoading(true);
 
       try {
+        let sort_by;
+        const sortOptions = ["release_date", "popularity", "vote_average"];
+
+        for (const option of sortOptions) {
+          if (searchParams.has(option)) {
+            const value = searchParams.get(option) ?? "desc";
+            sort_by = `${option}.${value}`;
+          }
+        }
+
+        sort_by = sort_by ?? "release_date.desc";
+
         const url = title
           ? `${API_FILTER_MOVIES}&query=${title}&page=1`
-          : `${API_GET_MOVIES}&sort_by=release_date.desc&page=1`;
+          : `${API_GET_MOVIES}&sort_by=${sort_by}&page=1`;
 
         const response = await fetch(url);
         const { results }: MovieResponse = await response.json();
