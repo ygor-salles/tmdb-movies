@@ -1,36 +1,10 @@
-import { useEffect, useState } from "react";
-
-import { API_GET_MOVIES } from "../../constants/apiGetMovies";
+import { InputSearch, MovieCard } from "../../components/base";
 import { BaseLayout } from "../../components/layout";
-import { MovieCard } from "../../components/base";
-import { Movie, MovieResponse } from "../../models/IModel";
 import { API_IMAGE_URL } from "../../constants/apiImageUrl";
-import { InputSearch } from "../../components/base/InputSearch";
+import { useHomeNetwork } from "./hooks/useHomeNetwork";
 
 export function Home() {
-  const [isLoading, setIsLoading] = useState(false);
-  const [data, setData] = useState<Movie[]>([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      setIsLoading(true);
-
-      try {
-        const response = await fetch(
-          `${API_GET_MOVIES}&sort_by=release_date.desc&page=1`
-        );
-        const { results }: MovieResponse = await response.json();
-        setData(results);
-        console.log(data);
-      } catch (error) {
-        console.error(error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
+  const { data, handleSearch, isLoading } = useHomeNetwork();
 
   if (isLoading) {
     return <span>Loading...</span>;
@@ -38,7 +12,7 @@ export function Home() {
 
   return (
     <BaseLayout>
-      <InputSearch />
+      <InputSearch onSearch={handleSearch} />
       <div className="flex gap-4 p-4 justify-center max-w-7xl flex-wrap">
         {data.map((movie) => (
           <MovieCard
