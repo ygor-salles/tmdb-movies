@@ -3,4 +3,5 @@ export interface IMovieCardProps {
   posterUrl: string | null;
   releaseDate: string;
   isAdult: boolean;
+  rating: number;
 }

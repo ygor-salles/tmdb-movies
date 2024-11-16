@@ -30,7 +30,7 @@ export function Home() {
       {isLoading ? (
         <LoadingHome />
       ) : (
-        <div className="flex gap-4 p-4 justify-center max-w-7xl flex-wrap">
+        <div className="flex gap-4 justify-center max-w-screen-2xl flex-wrap">
           {data.map((movie) => (
             <MovieCard
               key={movie.id}
@@ -38,6 +38,7 @@ export function Home() {
               posterUrl={
                 movie.poster_path ? `${API_IMAGE_URL}/${movie.poster_path}` : ""
               }
+              rating={movie.vote_average}
               releaseDate={movie.release_date}
               isAdult={movie.adult}
             />
