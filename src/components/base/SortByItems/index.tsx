@@ -2,6 +2,7 @@ import { FaArrowDown, FaArrowUp } from "react-icons/fa";
 import { ISortByItemsProps } from "./types";
 import { useSearchParams } from "react-router-dom";
 import { getSortParamsUrl } from "./utils/getSortParamsURL";
+import { getNewValueSort } from "./utils/getNewValueSort";
 
 export function SortByItems({ items }: Readonly<ISortByItemsProps>) {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -10,13 +11,7 @@ export function SortByItems({ items }: Readonly<ISortByItemsProps>) {
     const result = getSortParamsUrl(searchParams, items);
 
     if (result) {
-      const changed = result.value === "asc" ? "desc" : "asc";
-      const newValue =
-        result.option === key ||
-        (result.option !== key && result.value === "asc")
-          ? changed
-          : result.value;
-
+      const newValue = getNewValueSort(key, result);
       setSearchParams({ [key]: newValue });
       return;
     }

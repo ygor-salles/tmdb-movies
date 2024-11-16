@@ -11,7 +11,7 @@ export const MovieCard = ({
   const colorText = isAdult ? "text-red-500" : "text-green-500";
 
   return (
-    <div className="w-80 rounded-lg overflow-hidden shadow-lg bg-white dark:bg-zinc-900">
+    <div className="w-72 rounded-lg overflow-hidden shadow-lg bg-white dark:bg-zinc-900">
       <img
         className="w-full h-72 object-cover"
         src={posterUrl ? `${API_IMAGE_URL}/${posterUrl}` : IMAGES.notFoundImage}
