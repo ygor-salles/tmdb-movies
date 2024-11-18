@@ -22,7 +22,7 @@ export const MovieCard = ({ movie }: IMovieCardProps) => {
     <>
       <div
         onClick={handleToggle}
-        className="w-72 relative rounded-lg overflow-hidden shadow-lg bg-white dark:bg-zinc-900 transition-transform duration-300 hover:scale-105 hover:shadow-lg cursor-pointer"
+        className="w-72 relative rounded-lg overflow-hidden shadow-lg  dark:bg-zinc-900 transition-transform duration-300 hover:scale-105 hover:shadow-lg cursor-pointer"
       >
         <img
           className="w-full h-80 object-fill"
