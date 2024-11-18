@@ -46,7 +46,7 @@ export const RatingCircle = ({ rating }: RatingCircleProps) => {
             transform="rotate(-90 40 40)"
           />
         </svg>
-        <span className="text-lg font-bold text-white">
+        <span className="text-lg font-bold text-gray-800 dark:text-white">
           {rating.toFixed(1)}
         </span>
       </div>
