@@ -16,14 +16,14 @@ export function InputSearch({
   };
 
   return (
-    <div className="relative max-w-5xl mx-auto items-center ">
+    <div className="relative items-center w-[calc(100%-16px)] sm:max-w-5xl">
       <form onSubmit={handleSearch}>
         <input
           type="text"
           defaultValue={defaultValue ?? undefined}
           ref={inputRef}
           placeholder="Buscar..."
-          className="w-[600px] py-3 px-4 text-lg text-gray-800 bg-gray-100 border border-transparent rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 placeholder-gray-500 transition-all duration-300 ease-in-out"
+          className="w-full py-3 px-4 text-lg text-gray-800 bg-gray-100 border border-transparent rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 placeholder-gray-500 transition-all duration-300 ease-in-out"
         />
         <button
           className="absolute right-4 top-[25%] flex items-center justify-center"

@@ -11,13 +11,13 @@ export function ModalDetails({
 }: Readonly<IModalDetails>) {
   const { title, overview, id } = movie;
 
-  const { isLoading, trailerKey } = useGetTrailer({ movieId: id });
+  const { trailerKey, isLoading } = useGetTrailer({ movieId: id });
 
   return (
     <Modal open={openModal} toggleModal={onToggle} title={title}>
       <span>{overview ?? "Nenhuma sinopse disponível"}</span>
       {isLoading ? (
-        <Skeleton />
+        <Skeleton width="100%" />
       ) : (
         <>
           {trailerKey ? (

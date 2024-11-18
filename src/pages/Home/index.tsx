@@ -1,7 +1,6 @@
 import { InputSearch, MovieCard } from "../../components/base";
 import { SortByItems } from "../../components/base/SortByItems";
 import { BaseLayout } from "../../components/layout";
-import { API_IMAGE_URL } from "../../constants/apiImageUrl";
 import { LoadingHome } from "./components/LoadingHome";
 import { sortItems } from "./constants/sortItems";
 import { useHomeNetwork } from "./hooks/useHomeNetwork";

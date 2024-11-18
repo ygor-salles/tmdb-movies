@@ -19,7 +19,7 @@ export function SortByItems({ items }: Readonly<ISortByItemsProps>) {
   };
 
   return (
-    <div className="max-w-7xl  flex gap-4 items-center">
+    <div className="max-w-7xl flex flex-col gap-4 items-center sm:flex-row">
       {items.map(({ label, key, value, sortingType }) => {
         const valueParams = searchParams.get(key);
         const isDesc = valueParams && valueParams === "desc";
