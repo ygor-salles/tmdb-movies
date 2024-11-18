@@ -10,10 +10,11 @@ export function useHomeNetwork() {
   const [data, setData] = useState<MovieResponse>();
   const [searchParams, setSearchParams] = useSearchParams();
 
+  const page = searchParams.get("page") ?? "1";
+
   useEffect(() => {
     if (!searchParams.has("title")) {
       const result = getSortParamsUrl(searchParams, sortItems);
-      const page = searchParams.get("page") ?? "1";
 
       if (result) {
         setSearchParams({
@@ -27,14 +28,13 @@ export function useHomeNetwork() {
         page,
       });
     }
-  }, [searchParams, setSearchParams]);
+  }, [page, searchParams, setSearchParams]);
 
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
 
       try {
-        const page = searchParams.get("page") ?? "1";
         const url = setUrlApi({ page, searchParams, sortItems });
 
         const response = await fetch(url);
@@ -49,11 +49,12 @@ export function useHomeNetwork() {
     };
 
     fetchData();
-  }, [searchParams]);
+  }, [page, searchParams]);
 
   return {
     data,
     isLoading,
     title: searchParams.get("title"),
+    page: Number(page),
   };
 }

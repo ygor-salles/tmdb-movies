@@ -14,11 +14,10 @@ export function useHomeEvents() {
   };
 
   const handlePageChange = (page: number) => {
-    console.log(page);
     if (page) {
-      const newParams = new URLSearchParams(searchParams); // Cria uma cópia dos parâmetros
-      newParams.set("page", `${page}`); // Define o novo valor para "page"
-      setSearchParams(newParams); // Atualiza os parâmetros na URL
+      const newParams = new URLSearchParams(searchParams);
+      newParams.set("page", `${page}`);
+      setSearchParams(newParams);
     }
   };
 

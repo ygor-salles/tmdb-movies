@@ -1,5 +1,5 @@
 export interface IRenderPagesNumberProps {
-  pageState: number;
+  page: number;
   totalPages: number;
   handlePageChange: (newPage: number) => void;
 }

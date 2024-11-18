@@ -9,7 +9,7 @@ import { useHomeNetwork } from "./hooks/useHomeNetwork";
 export function Home() {
   const { handleSearch, handlePageChange } = useHomeEvents();
 
-  const { data, title, isLoading } = useHomeNetwork();
+  const { data, title, isLoading, page } = useHomeNetwork();
 
   return (
     <BaseLayout>
@@ -17,9 +17,9 @@ export function Home() {
 
       <SortByItems items={sortItems} />
       <Pagination
-        page={data?.page ?? 1}
-        totalPages={data?.total_pages ?? 10}
-        totalResults={data?.total_results ?? 100}
+        page={page}
+        totalPages={data?.total_pages}
+        totalResults={data?.total_results}
         onPageChange={handlePageChange}
       />
 

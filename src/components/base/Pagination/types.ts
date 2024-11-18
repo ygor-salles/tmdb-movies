@@ -1,6 +1,6 @@
 export interface IPaginationProps {
-  page: number;
-  totalPages: number;
-  totalResults: number;
+  page: number | undefined;
+  totalPages: number | undefined;
+  totalResults: number | undefined;
   onPageChange: (page: number) => void;
 }
