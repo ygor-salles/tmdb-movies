@@ -1,50 +1,82 @@
-# React + TypeScript + Vite
+# 🎬 Projeto Frontend de Busca e Filtragem de Filmes
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este é um projeto frontend desenvolvido em **React** utilizando o **Vite**. Ele consome a API pública do [The Movie Database (TMDB)](https://www.themoviedb.org/), permitindo aos usuários buscar e filtrar filmes, visualizar detalhes e assistir trailers.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Funcionalidades
 
-## Expanding the ESLint configuration
+- **Busca de filmes**: Pesquise títulos diretamente da API do TMDB.
+- **Filtragem de filmes**: Ordene ou aplique filtros para refinar os resultados.
+- **Detalhes do filme**: Visualize informações completas de um filme.
+- **Trailer do filme**: Assista ao trailer diretamente na aplicação.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+---
 
-- Configure the top-level `parserOptions` property like this:
+## 🛠️ Tecnologias utilizadas
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+- **React** com **Vite**
+- **TypeScript**
+- Consumo da API pública do **TMDB**
+
+---
+
+## 🖥️ Como rodar o projeto
+
+Siga os passos abaixo para executar o projeto localmente:
+
+### 1. **Clone o repositório**
+
+Primeiro, clone o repositório em sua máquina local:
+
+```bash
+git clone https://github.com/seu-usuario/seu-repositorio.git
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+### 2. **Acesse o diretório do projeto**
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+```bash
+cd seu-repositorio
 ```
+
+### 3. **Instale as dependências**
+
+Utilize o pnpm (ou o gerenciador de pacotes da sua escolha) para instalar as dependências do projeto:
+
+```bash
+pnpm install
+```
+
+Nota: Certifique-se de ter o pnpm instalado globalmente em sua máquina. Caso não tenha, instale com o comando:
+
+```bash
+npm install -g pnpm
+```
+
+### 4. **Configure as variáveis de ambiente**
+
+Copie o arquivo `.env.example` para `.env`:
+
+```bash
+cp .env.example .env
+```
+
+Preencha as variáveis de ambiente com os valores apropriados:
+VITE_API_URL=<URL da API TMDB>
+VITE_APP_API_KEY=<Sua chave de API do TMDB>
+VITE_APP_API_IMAGE_URL=<URL base para imagens do TMDB>
+VITE_URL_YOUTUBE=<URL base do YouTube para trailers>
+
+### 5. **Execute o projeto**
+
+Inicie o servidor de desenvolvimento com o comando:
+
+```bash
+pnpm dev
+```
+
+### 6. **Acesse no navegador**
+
+Abra o navegador e acesse:
+
+http://localhost:5173
