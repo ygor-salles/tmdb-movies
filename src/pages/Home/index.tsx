@@ -1,36 +1,33 @@
-import { InputSearch, MovieCard } from "../../components/base";
+import { InputSearch, MovieCard, Pagination } from "../../components/base";
 import { SortByItems } from "../../components/base/SortByItems";
 import { BaseLayout } from "../../components/layout";
 import { LoadingHome } from "./components/LoadingHome";
 import { sortItems } from "./constants/sortItems";
+import { useHomeEvents } from "./hooks/useHomeEvents";
 import { useHomeNetwork } from "./hooks/useHomeNetwork";
 
 export function Home() {
-  const { data, searchParams, setSearchParams, isLoading } = useHomeNetwork();
+  const { handleSearch, handlePageChange } = useHomeEvents();
 
-  const handleSearch = (value: string | undefined) => {
-    if (value) {
-      setSearchParams({ title: value, page: "1" });
-      return;
-    }
-
-    searchParams.delete("title");
-    setSearchParams(searchParams);
-  };
-
-  const title = searchParams.get("title");
+  const { data, title, isLoading } = useHomeNetwork();
 
   return (
     <BaseLayout>
       <InputSearch onSearch={handleSearch} defaultValue={title} />
 
       <SortByItems items={sortItems} />
+      <Pagination
+        page={data?.page ?? 1}
+        totalPages={data?.total_pages ?? 10}
+        totalResults={data?.total_results ?? 100}
+        onPageChange={handlePageChange}
+      />
 
       {isLoading ? (
         <LoadingHome />
       ) : (
         <div className="flex gap-4 justify-center max-w-screen-2xl flex-wrap">
-          {data.map((movie) => (
+          {data?.results.map((movie) => (
             <MovieCard key={movie.id} movie={movie} />
           ))}
         </div>
