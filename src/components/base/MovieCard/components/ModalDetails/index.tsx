@@ -15,19 +15,22 @@ export function ModalDetails({
 
   return (
     <Modal open={openModal} toggleModal={onToggle} title={title}>
-      <span>{overview}</span>
+      <span>{overview ?? "Nenhuma sinopse disponível"}</span>
       {isLoading ? (
         <Skeleton />
       ) : (
         <>
           {trailerKey ? (
-            <iframe
-              src={`${URL_YOUTUBE}/${trailerKey}`}
-              title="Trailer"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            ></iframe>
+            <div className="flex-grow relative">
+              <iframe
+                src={`${URL_YOUTUBE}/${trailerKey}`}
+                title="Trailer"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="w-full h-full rounded"
+              ></iframe>
+            </div>
           ) : (
             <p>Trailer não disponível</p>
           )}
