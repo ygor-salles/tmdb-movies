@@ -15,13 +15,15 @@ export function Home() {
     <BaseLayout>
       <InputSearch onSearch={handleSearch} defaultValue={title} />
 
-      <SortByItems items={sortItems} />
-      <Pagination
-        page={page}
-        totalPages={data?.total_pages}
-        totalResults={data?.total_results}
-        onPageChange={handlePageChange}
-      />
+      <div className="flex flex-col items-center justify-between w-[calc(100%-32px)] gap-8 sm:justify-between sm:max-w-5xl lg:flex-row">
+        <SortByItems items={sortItems} />
+        <Pagination
+          page={page}
+          totalPages={data?.total_pages}
+          totalResults={data?.total_results}
+          onPageChange={handlePageChange}
+        />
+      </div>
 
       {isLoading ? (
         <LoadingHome />

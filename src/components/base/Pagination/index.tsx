@@ -24,7 +24,7 @@ export function Pagination({
   };
 
   return (
-    <div className="flex items-center justify-center space-x-2 mt-4">
+    <div className="flex items-center justify-center space-x-2">
       <button onClick={handlePrevious} disabled={page === 1}>
         <FaArrowLeft
           size={28}

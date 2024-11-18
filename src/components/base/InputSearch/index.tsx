@@ -16,7 +16,7 @@ export function InputSearch({
   };
 
   return (
-    <div className="relative items-center w-[calc(100%-16px)] sm:max-w-5xl">
+    <div className="relative items-center w-[calc(100%-32px)] sm:max-w-5xl">
       <form onSubmit={handleSearch}>
         <input
           type="text"

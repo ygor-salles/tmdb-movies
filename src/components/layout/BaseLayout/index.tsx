@@ -15,7 +15,7 @@ export function BaseLayout({ children }: Readonly<IBaseLayoutProps>) {
           <span className="text-white">Buscador de filmes</span>
         </div>
       </header>
-      <main className="flex flex-col gap-6 flex-1 items-center bg-gradient-to-r py-5 from-zinc-800 to-zinc-900 via-blue-900">
+      <main className="flex flex-col flex-1 items-center bg-gradient-to-r py-5 from-zinc-800 to-zinc-900 via-blue-900 gap-4 sm:gap-8">
         {children}
       </main>
       <footer className="flex flex-col gap-2 justify-center items-center  bg-blue-950 p-4 sm:p-8">
