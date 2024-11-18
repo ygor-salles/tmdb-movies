@@ -15,7 +15,11 @@ export function ModalDetails({
 
   return (
     <Modal open={openModal} toggleModal={onToggle} title={title}>
-      <span>{overview ?? "Nenhuma sinopse disponível"}</span>
+      <span>
+        {!overview || overview.length === 0
+          ? "Nenhuma sinopse disponível"
+          : overview}
+      </span>
       {isLoading ? (
         <Skeleton width="100%" />
       ) : (
@@ -32,7 +36,9 @@ export function ModalDetails({
               ></iframe>
             </div>
           ) : (
-            <p>Trailer não disponível</p>
+            <div className="w-full h-full bg-gray-300 rounded flex justify-center items-center">
+              <p className="text-gray-600">Trailer não disponível</p>
+            </div>
           )}
         </>
       )}

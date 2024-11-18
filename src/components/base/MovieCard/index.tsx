@@ -4,6 +4,7 @@ import { API_IMAGE_URL } from "../../../constants/apiImageUrl";
 import { RatingCircle } from "../RatingSort";
 import { IMovieCardProps } from "./types";
 import { ModalDetails } from "./components/ModalDetails";
+import { formatDateToPtBR } from "../../../utils/formatDateToPtBR";
 
 export const MovieCard = ({ movie }: IMovieCardProps) => {
   const { title, poster_path, release_date, adult, vote_average } = movie;
@@ -35,7 +36,7 @@ export const MovieCard = ({ movie }: IMovieCardProps) => {
             {title}
           </h2>
           <p className="text-sm  text-gray-500 dark:text-gray-400">
-            Lançamento: {release_date}
+            Lançamento: {formatDateToPtBR(release_date)}
           </p>
           <p className="text-sm font-medium text-gray-800 dark:text-white mt-2">
             Classificação:{" "}
