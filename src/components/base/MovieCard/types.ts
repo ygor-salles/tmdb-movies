@@ -1,7 +1,5 @@
+import { Movie } from "../../../models/movie-model";
+
 export interface IMovieCardProps {
-  title: string;
-  posterUrl: string | null;
-  releaseDate: string;
-  isAdult: boolean;
-  rating: number;
+  movie: Movie;
 }
