@@ -80,3 +80,13 @@ pnpm dev
 Abra o navegador e acesse:
 
 http://localhost:5173
+
+---
+
+## 🛠️ Rodar Testes automatizados
+
+Execute o comando:
+
+```bash
+pnpm test
+```
