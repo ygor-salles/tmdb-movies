@@ -15,7 +15,7 @@ export function ModalDetails({
 
   return (
     <Modal open={openModal} toggleModal={onToggle} title={title}>
-      <span>
+      <span data-testid="modal-detail-sinopse">
         {!overview || overview.length === 0
           ? "Nenhuma sinopse disponível"
           : overview}
@@ -25,7 +25,10 @@ export function ModalDetails({
       ) : (
         <>
           {trailerKey ? (
-            <div className="flex-grow relative">
+            <div
+              className="flex-grow relative"
+              data-testid="modal-detail-iframe"
+            >
               <iframe
                 src={`${URL_YOUTUBE}/${trailerKey}`}
                 title="Trailer"
@@ -36,7 +39,10 @@ export function ModalDetails({
               ></iframe>
             </div>
           ) : (
-            <div className="w-full h-full bg-gray-300 rounded flex justify-center items-center">
+            <div
+              className="w-full h-full bg-gray-300 rounded flex justify-center items-center"
+              data-testid="modal-detail-empty"
+            >
               <p className="text-gray-600">Trailer não disponível</p>
             </div>
           )}
