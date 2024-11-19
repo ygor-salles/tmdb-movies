@@ -23,6 +23,7 @@ export const MovieCard = ({ movie }: IMovieCardProps) => {
       <div
         onClick={handleToggle}
         className="w-72 relative rounded-lg overflow-hidden shadow-lg bg-white dark:bg-zinc-900 transition-transform duration-300 hover:scale-105 hover:shadow-lg cursor-pointer"
+        data-testid="movie-card-wrapper"
       >
         <img
           className="w-full h-80 object-fill"
@@ -30,15 +31,25 @@ export const MovieCard = ({ movie }: IMovieCardProps) => {
             posterUrl ? `${API_IMAGE_URL}/${posterUrl}` : IMAGES.notFoundImage
           }
           alt={title}
+          data-testid="movie-card-image"
         />
         <div className="px-4 py-4">
-          <h2 className="text-xl font-semibold text-gray-800 dark:text-white">
+          <h2
+            className="text-xl font-semibold text-gray-800 dark:text-white"
+            data-testid="movie-card-title"
+          >
             {title}
           </h2>
-          <p className="text-sm  text-gray-500 dark:text-gray-400">
+          <p
+            className="text-sm  text-gray-500 dark:text-gray-400"
+            data-testid="movie-card-release"
+          >
             Lançamento: {formatDateToPtBR(release_date)}
           </p>
-          <p className="text-sm font-medium text-gray-800 dark:text-white mt-2">
+          <p
+            className="text-sm font-medium text-gray-800 dark:text-white mt-2"
+            data-testid="movie-card-class"
+          >
             Classificação:{" "}
             <span className={colorText}>{adult ? "Adulto" : "Livre"}</span>
           </p>

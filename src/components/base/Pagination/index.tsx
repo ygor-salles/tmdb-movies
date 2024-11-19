@@ -1,5 +1,5 @@
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
-import { RenderPageNumbers } from "./RenderPagesNumber";
+import { RenderPageNumbers } from "./components/RenderPagesNumber";
 import { IPaginationProps } from "./types";
 
 export function Pagination({
