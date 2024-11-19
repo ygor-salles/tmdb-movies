@@ -6,7 +6,10 @@ export function Skeleton({
 }: Readonly<ISkeletonProps>) {
   return (
     <span
-      className={`block h-[${height}] w-[${width}] bg-[#323238] rounded-md border-none animate-loading`}
+      data-testid="skeleton"
+      role="presentation"
+      style={{ height, width }}
+      className="block bg-[#323238] rounded-md border-none animate-loading"
     />
   );
 }

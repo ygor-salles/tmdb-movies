@@ -17,8 +17,14 @@ export const RatingCircle = ({ rating }: RatingCircleProps) => {
   };
 
   return (
-    <div className="absolute right-[20px] bottom-4">
-      <div className="relative  w-12 h-12 flex items-center justify-center">
+    <div
+      className="absolute right-[20px] bottom-4"
+      data-testid="rating-sort-wrapper"
+    >
+      <div
+        className="relative  w-12 h-12 flex items-center justify-center"
+        data-testid="rating-sort-circle"
+      >
         <svg
           width="100%"
           height="100%"
@@ -46,8 +52,11 @@ export const RatingCircle = ({ rating }: RatingCircleProps) => {
             transform="rotate(-90 40 40)"
           />
         </svg>
-        <span className="text-lg font-bold text-gray-800 dark:text-white">
-          {rating.toFixed(1)}
+        <span
+          className="text-lg font-bold text-gray-800 dark:text-white"
+          data-testid="rating-sort-rating"
+        >
+          {rating?.toFixed(1)}
         </span>
       </div>
     </div>

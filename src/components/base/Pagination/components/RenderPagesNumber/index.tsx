@@ -21,6 +21,7 @@ export function RenderPageNumbers({
           ? "bg-blue-500 text-white"
           : "bg-gray-200 text-gray-700 hover:bg-blue-100"
       }`}
+      data-testid="render-page-number-button"
     >
       {pageNumber}
     </button>
