@@ -19,17 +19,23 @@ export function SortByItems({ items }: Readonly<ISortByItemsProps>) {
   };
 
   return (
-    <div className="max-w-7xl flex flex-col gap-4 items-center sm:flex-row">
+    <div
+      className="max-w-7xl flex flex-col gap-4 items-center sm:flex-row"
+      data-testid="sortby-items-wrapper"
+    >
       {items.map(({ label, key, value, sortingType }) => {
         const valueParams = searchParams.get(key);
         const isDesc = valueParams && valueParams === "desc";
 
         return (
           <div key={label} className="flex items-center gap-2">
-            <span className="text-white">
+            <span className="text-white" data-testid="sortby-items-label">
               {sortingType === "date" ? label : `Top ${label}`}
             </span>
-            <button onClick={() => handleClickSort(key, value)}>
+            <button
+              onClick={() => handleClickSort(key, value)}
+              data-testid="sortby-items-button"
+            >
               {isDesc ? (
                 <FaArrowUp size={24} className="text-white" />
               ) : (

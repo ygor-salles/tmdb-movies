@@ -25,7 +25,11 @@ export function Pagination({
 
   return (
     <div className="flex items-center justify-center space-x-2">
-      <button onClick={handlePrevious} disabled={page === 1}>
+      <button
+        onClick={handlePrevious}
+        disabled={page === 1}
+        data-testid="arrow-left-pagination-button"
+      >
         <FaArrowLeft
           size={28}
           className={
@@ -42,7 +46,11 @@ export function Pagination({
         totalPages={totalPages}
       />
 
-      <button onClick={handleNext} disabled={page === totalPages}>
+      <button
+        onClick={handleNext}
+        disabled={page === totalPages}
+        data-testid="arrow-right-pagination-button"
+      >
         <FaArrowRight
           size={28}
           className={
